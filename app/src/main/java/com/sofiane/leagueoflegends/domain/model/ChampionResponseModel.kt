@@ -5,7 +5,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ChampionResponse(
+data class ChampionResponseModel(
     @SerialName("data")
     val `data`: Map<String, ChampionModel> = emptyMap(),
     @SerialName("format")
