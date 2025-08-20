@@ -13,6 +13,7 @@
 .externalNativeBuild
 .cxx
 local.properties
+*.idea/
 
 ## Seb's .gitignore template
 # You can find the most up-to-date version at https://go.sebastiano.dev/gitignore
