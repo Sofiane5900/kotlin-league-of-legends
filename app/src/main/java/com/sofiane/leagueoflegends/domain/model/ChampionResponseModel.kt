@@ -20,7 +20,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ChampionResponseModel(
     @SerialName("data")
-    val `data`: Map<String, ChampionModel> = emptyMap(),
+    val `champion`: Map<String, ChampionModel> = emptyMap(),
     @SerialName("format")
     val format: String? = "",
     @SerialName("type")

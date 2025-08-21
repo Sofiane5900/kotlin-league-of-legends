@@ -40,3 +40,6 @@ data class ChampionModel(
     @SerialName("title")
     val title: String? = ""
 )
+
+fun Map<String, ChampionModel>.toChampionList(): List<ChampionModel> =
+    this.values.toList()
