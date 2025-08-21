@@ -58,4 +58,6 @@ dependencies {
     implementation(libs.sandwich)
     implementation(libs.sandwich.ktor)
     implementation(libs.ktor.client.core)
+    implementation(libs.hilt.android)
+
 }
