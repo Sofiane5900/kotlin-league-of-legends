@@ -1,10 +1,71 @@
 package com.sofiane.leagueoflegends.ui.screen.champion_list
 
+import android.graphics.drawable.Icon
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Search
+import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.sofiane.leagueoflegends.ui.screen.champion_list.composable.ChampionCard
+import com.sofiane.leagueoflegends.ui.theme.LeagueoflegendsTheme
 
 @Composable
-fun ChampionListScreen(modifier: Modifier = Modifier)
+fun ChampionListScreen()
 {
+    Scaffold { innerPadding ->
+        Column(
+            modifier = Modifier
+                .padding(innerPadding)
+                .fillMaxSize()
+                .padding(horizontal = 20.dp)
 
+        ) {
+            OutlinedTextField(
+                value = "",
+                onValueChange = {},
+                placeholder = {
+                    Text(text = "Chercher des champions")
+                },
+                leadingIcon = {
+                    Icon(
+                        imageVector = Icons.Rounded.Search,
+                        contentDescription = null
+                    )
+                },
+                shape = RoundedCornerShape(12.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 20.dp)
+            )
+            LazyColumn(
+                verticalArrangement = Arrangement.spacedBy(16.dp),
+
+            ){
+                items(5)
+                {
+                    ChampionCard()
+                }
+            }
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun ChampionListPreview (modifier: Modifier = Modifier) {
+    LeagueoflegendsTheme {
+        ChampionListScreen()
+    }
 }
