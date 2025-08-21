@@ -15,10 +15,30 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import javax.inject.Singleton
 
+/**
+ * Module Dagger Hilt qui fournit les dépendances HTTP et repository pour l’application.
+ *
+ * Ici on configure :
+ * - un [HttpClient] basé sur OkHttp pour consommer l’API Riot Data Dragon,
+ * - un [ChampionRepository] qui encapsule les appels à l’API.
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
+
+    /**
+     * Fournit une instance unique de [HttpClient].
+     *
+     * - Utilise le moteur OkHttp.
+     * - Configure une requête par défaut avec :
+     *   - L’URL de base des données Riot ([ChampionRepositoryImpl.BASE_URL]).
+     *   - L’en-tête `"Content-Type: application/json"`.
+     * - Installe le plugin [ContentNegotiation] avec Kotlinx Serialization,
+     *   configuré pour ignorer les champs inconnus dans le JSON.
+     *
+     * @return Une instance singleton de [HttpClient].
+     */
     @Provides
     @Singleton
     fun provideHttpClient(): HttpClient
@@ -41,6 +61,15 @@ object AppModule {
         }
     }
 
+    /**
+     * Fournit une implémentation de [ChampionRepository].
+     *
+     * Cette implémentation ([ChampionRepositoryImpl]) utilise
+     * le [HttpClient] configuré ci-dessus pour interagir avec l’API Riot Data Dragon.
+     *
+     * @param httpClient Le client HTTP fourni par [provideHttpClient].
+     * @return Une instance singleton de [ChampionRepository].
+     */
     @Provides
     @Singleton
     fun provideChampionRepository(httpClient: HttpClient): ChampionRepository

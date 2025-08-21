@@ -7,8 +7,7 @@ import kotlinx.serialization.Serializable
 /**
  * Représente un champion League of Legends
  *
- * Ce modéle est utilisé pour désérialiser la réponse JSON
- * de l'API Riot (Data Dragon).
+ * Ce modéle est utilisé pour désérialiser la réponse JSON de l'API Riot Data Dragon.
  *
  * @property id Identifiant texte unique du champion (ex: `"Aatrox"`).
  * @property imageModel Informations sur l’icône du champion (sprite, chemin d’image).
