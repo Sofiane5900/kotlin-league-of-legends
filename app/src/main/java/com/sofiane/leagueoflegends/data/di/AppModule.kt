@@ -1,6 +1,7 @@
 package com.sofiane.leagueoflegends.data.di
 
 import com.sofiane.leagueoflegends.data.repository.ChampionRepositoryImpl
+import com.sofiane.leagueoflegends.domain.repository.ChampionRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -38,5 +39,12 @@ object AppModule {
                 )
             }
         }
+    }
+
+    @Provides
+    @Singleton
+    fun provideChampionRepository(httpClient: HttpClient): ChampionRepository
+    {
+       return ChampionRepositoryImpl(httpClient = httpClient)
     }
 }
