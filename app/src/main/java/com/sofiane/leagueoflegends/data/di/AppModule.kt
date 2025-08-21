@@ -25,8 +25,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-
-
     /**
      * Fournit une instance unique de [HttpClient].
      *
