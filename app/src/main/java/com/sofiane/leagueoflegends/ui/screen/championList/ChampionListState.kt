@@ -1,4 +1,4 @@
-package com.sofiane.leagueoflegends.ui.screen.champion_list
+package com.sofiane.leagueoflegends.ui.screen.championList
 
 import com.sofiane.leagueoflegends.domain.model.ChampionModel
 

@@ -1,4 +1,4 @@
-package com.sofiane.leagueoflegends.ui.screen.champion_list
+package com.sofiane.leagueoflegends.ui.screen.championList
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -25,7 +25,7 @@ class ChampionListViewModel @Inject constructor(
                 .onSuccess {
                     _state.update {
                         it.copy(
-                            champions = data.champions.toChampionList()
+                            champions = data.champion.toChampionList()
                         )
                     }
                 }

@@ -1,6 +1,5 @@
-package com.sofiane.leagueoflegends.ui.screen.champion_list.composable
+package com.sofiane.leagueoflegends.ui.screen.championList.composable
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,15 +16,19 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.sofiane.leagueoflegends.R
+import com.sofiane.leagueoflegends.core.util.RiotImageConstant
+import com.sofiane.leagueoflegends.domain.model.ChampionModel
 import com.sofiane.leagueoflegends.ui.theme.LeagueoflegendsTheme
 
 @Composable
-fun ChampionCard() {
+fun ChampionCard(champion: ChampionModel) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        Image(
+        AsyncImage(
+            model = RiotImageConstant.RiotImageConstant.LOADING + "${champion.name}_0.jpg",
             painter = painterResource(R.drawable.draven_card),
             contentDescription = null,
             contentScale = ContentScale.FillWidth,

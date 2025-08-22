@@ -1,6 +1,5 @@
-package com.sofiane.leagueoflegends.ui.screen.champion_list
+package com.sofiane.leagueoflegends.ui.screen.championList
 
-import android.graphics.drawable.Icon
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,7 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.sofiane.leagueoflegends.ui.screen.champion_list.composable.ChampionCard
+import com.sofiane.leagueoflegends.ui.screen.championList.composable.ChampionCard
 import com.sofiane.leagueoflegends.ui.theme.LeagueoflegendsTheme
 
 @Composable

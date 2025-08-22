@@ -11,6 +11,8 @@ class ChampionRepositoryImpl(
     companion object {
         // TODO : ajouter l'url dans un fichier .env
         const val BASE_URL = "https://ddragon.leagueoflegends.com/cdn/15.16.1/data/fr_FR"
+
+
     }
     override suspend fun getAllChampions(): ApiResponse<ChampionResponseModel> {
         return httpClient.getApiResponse("champion.json")
