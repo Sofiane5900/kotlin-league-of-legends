@@ -18,7 +18,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
+import coil3.compose.AsyncImage
 import com.sofiane.leagueoflegends.R
 import com.sofiane.leagueoflegends.core.util.RiotImageConstant
 import com.sofiane.leagueoflegends.domain.model.ChampionModel
@@ -30,7 +30,7 @@ fun ChampionCard(champion: ChampionModel) {
         horizontalArrangement = Arrangement.spacedBy(10.dp)
     ) {
         AsyncImage(
-            model = RiotImageConstant.LOADING + "${champion.name}_0.jpg",
+            model = RiotImageConstant.LOADING + "${champion.id}_0.jpg",
             contentDescription = null,
             contentScale = ContentScale.FillWidth,
             modifier = Modifier
