@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Search
@@ -15,13 +16,17 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.pointer.HistoricalChange
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.sofiane.leagueoflegends.ui.screen.championList.composable.ChampionCard
 import com.sofiane.leagueoflegends.ui.theme.LeagueoflegendsTheme
 
 @Composable
-fun ChampionListScreen()
+fun ChampionListScreen(
+    state: ChampionListState,
+    onValueChange: (String) -> Unit
+)
 {
     Scaffold { innerPadding ->
         Column(
@@ -32,8 +37,8 @@ fun ChampionListScreen()
 
         ) {
             OutlinedTextField(
-                value = "",
-                onValueChange = {},
+                value = state.searchText,
+                onValueChange = onValueChange,
                 placeholder = {
                     Text(text = "Chercher des champions")
                 },
@@ -52,10 +57,10 @@ fun ChampionListScreen()
                 verticalArrangement = Arrangement.spacedBy(16.dp),
 
             ){
-                items(5)
-                {
-                    ChampionCard()
+                items(state.filteredChampions.ifEmpty { state.champions }) { champions ->
+                    ChampionCard(champion = champions)
                 }
+
             }
         }
     }
@@ -65,6 +70,6 @@ fun ChampionListScreen()
 @Composable
 private fun ChampionListPreview (modifier: Modifier = Modifier) {
     LeagueoflegendsTheme {
-        ChampionListScreen()
+       // ChampionListScreen()
     }
 }
