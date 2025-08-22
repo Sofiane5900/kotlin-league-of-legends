@@ -35,7 +35,7 @@ fun ChampionCard(champion: ChampionModel) {
             contentScale = ContentScale.FillWidth,
             modifier = Modifier
                 .weight(0.3f)
-                .height(100.dp)
+                .height(200.dp)
                 .clip(RoundedCornerShape(20.dp))
         )
 
