@@ -16,11 +16,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.pointer.HistoricalChange
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.sofiane.leagueoflegends.ui.screen.championList.composable.ChampionCard
-import com.sofiane.leagueoflegends.ui.theme.LeagueoflegendsTheme
 
 @Composable
 fun ChampionListScreen(
@@ -40,7 +37,7 @@ fun ChampionListScreen(
                 value = state.searchText,
                 onValueChange = onValueChange,
                 placeholder = {
-                    Text(text = "Chercher des champions")
+                    Text(text = "Rechercher des champions")
                 },
                 leadingIcon = {
                     Icon(

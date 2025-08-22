@@ -51,7 +51,7 @@ fun ChampionCard(champion: ChampionModel) {
             )
 
             Text(
-                text = champion.lore ?: "",
+                text = champion.blurb ?: "",
                 overflow = TextOverflow.Ellipsis,
                 maxLines = 3,
                 style = MaterialTheme.typography.bodyMedium,
