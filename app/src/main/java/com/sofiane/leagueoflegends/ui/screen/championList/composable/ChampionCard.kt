@@ -14,8 +14,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.sofiane.leagueoflegends.R
 import com.sofiane.leagueoflegends.core.util.RiotImageConstant
@@ -28,8 +30,7 @@ fun ChampionCard(champion: ChampionModel) {
         horizontalArrangement = Arrangement.spacedBy(10.dp)
     ) {
         AsyncImage(
-            model = RiotImageConstant.RiotImageConstant.LOADING + "${champion.name}_0.jpg",
-            painter = painterResource(R.drawable.draven_card),
+            model = RiotImageConstant.LOADING + "${champion.name}_0.jpg",
             contentDescription = null,
             contentScale = ContentScale.FillWidth,
             modifier = Modifier
@@ -44,13 +45,17 @@ fun ChampionCard(champion: ChampionModel) {
                 .padding(vertical = 10.dp)
         ) {
             Text(
-                text = "Draven",
+                text = champion.name ?: "",
                 style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Bold
             )
 
             Text(
-                text = "testsdfsffftestsdfsffftestsdfsffftestsdfsffftestsdfsffftestsdfsffftestsdfsffftestsdfsffftestsdfsffftestsdfsfff"
+                text = champion.lore ?: "",
+                overflow = TextOverflow.Ellipsis,
+                maxLines = 3,
+                style = MaterialTheme.typography.bodyMedium,
+                lineHeight = 24.sp
             )
         }
     }
