@@ -61,11 +61,3 @@ fun ChampionCard(champion: ChampionModel) {
     }
 }
 
-
-@Preview
-@Composable
-private fun ChampionCardPreview() {
-    LeagueoflegendsTheme {
-        ChampionCard()
-    }
-}

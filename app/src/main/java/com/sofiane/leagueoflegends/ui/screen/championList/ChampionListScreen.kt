@@ -65,11 +65,3 @@ fun ChampionListScreen(
         }
     }
 }
-
-@Preview
-@Composable
-private fun ChampionListPreview (modifier: Modifier = Modifier) {
-    LeagueoflegendsTheme {
-       // ChampionListScreen()
-    }
-}

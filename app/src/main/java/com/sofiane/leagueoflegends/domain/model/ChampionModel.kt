@@ -29,6 +29,8 @@ data class ChampionModel(
     val key: String? = "",
     @SerialName("lore")
     val lore: String? = "",
+    @SerialName("blurb")
+    val blurb: String? = "",
     @SerialName("name")
     val name: String? = "",
     @SerialName("passive")
