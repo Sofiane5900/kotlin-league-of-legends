@@ -45,14 +45,14 @@ class MainActivity : ComponentActivity() {
                                 }
                             )
 
-                            composable<ChampionDetails> {
-                                val viewModel = hiltViewModel<ChampionDetailsViewModel>()
-                                viewModel.champion.value?.let{
-                                    ChampionDetailsScreen(champion = it)
-                                }
-
-
+                        }
+                        composable<ChampionDetails> {
+                            val viewModel = hiltViewModel<ChampionDetailsViewModel>()
+                            viewModel.champion.value?.let{
+                                ChampionDetailsScreen(champion = it)
                             }
+
+
                         }
                     }
                 }
