@@ -11,6 +11,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.sofiane.leagueoflegends.core.util.RiotImageConstant
+import com.sofiane.leagueoflegends.data.ddragon.RiotImageConstant
 import com.sofiane.leagueoflegends.domain.model.SpellModel
 
 @Composable
