@@ -24,7 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
-import com.sofiane.leagueoflegends.core.util.RiotImageConstant
+import com.sofiane.leagueoflegends.data.ddragon.RiotImageConstant
 import com.sofiane.leagueoflegends.domain.model.ChampionModel
 import com.sofiane.leagueoflegends.domain.model.ImageModel
 import com.sofiane.leagueoflegends.ui.theme.LeagueoflegendsTheme
