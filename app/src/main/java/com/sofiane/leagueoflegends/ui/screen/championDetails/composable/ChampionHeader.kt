@@ -1,16 +1,13 @@
 package com.sofiane.leagueoflegends.ui.screen.championDetails.composable
 
-import androidx.compose.foundation.layout.size
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil3.compose.AsyncImage
-import com.sofiane.leagueoflegends.data.ddragon.RiotImageConstant
+
 import com.sofiane.leagueoflegends.domain.model.ChampionModel
 import com.sofiane.leagueoflegends.ui.theme.LeagueoflegendsTheme
 
