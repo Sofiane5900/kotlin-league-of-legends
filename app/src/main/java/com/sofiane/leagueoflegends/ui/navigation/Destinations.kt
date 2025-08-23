@@ -1,4 +1,4 @@
-package com.sofiane.leagueoflegends.core.util
+package com.sofiane.leagueoflegends.ui.navigation
 
 import kotlinx.serialization.Serializable
 
