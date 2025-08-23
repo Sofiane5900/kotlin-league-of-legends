@@ -55,9 +55,8 @@ fun ChampionCard(champion: ChampionModel, modifier: Modifier = Modifier) {
         ) {
             Text(
                 text = champion.name ?: "test",
-                color = Color.Red,
-                style = MaterialTheme.typography.titleLarge,
-                fontWeight = FontWeight.Bold
+                color = Color.White,
+                style = MaterialTheme.typography.titleMedium,
             )
         }
     }
