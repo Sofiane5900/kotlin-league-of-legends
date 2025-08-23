@@ -12,6 +12,13 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * ViewModel qui gère l'écran de la liste des champions.
+ *
+ * - Expose un [ChampionListState] observable par l'UI.
+ * - Récupère la liste des champions via [ChampionRepository].
+ * - Filtre la liste en fonction du texte saisi dans la barre de recherche.
+ */
 @HiltViewModel
 class ChampionListViewModel @Inject constructor(
     private val championRepository: ChampionRepository
