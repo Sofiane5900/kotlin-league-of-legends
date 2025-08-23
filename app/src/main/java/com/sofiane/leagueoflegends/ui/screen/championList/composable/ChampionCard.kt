@@ -21,8 +21,9 @@ import com.sofiane.leagueoflegends.core.util.RiotImageConstant
 import com.sofiane.leagueoflegends.domain.model.ChampionModel
 
 @Composable
-fun ChampionCard(champion: ChampionModel, modifier: Modifier) {
+fun ChampionCard(champion: ChampionModel, modifier: Modifier = Modifier) {
     Row(
+        modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(10.dp)
     ) {
         AsyncImage(
