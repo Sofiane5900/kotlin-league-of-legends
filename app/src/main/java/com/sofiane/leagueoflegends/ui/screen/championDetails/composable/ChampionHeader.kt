@@ -11,7 +11,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import com.sofiane.leagueoflegends.data.ddragon.RiotImageConstant
-import com.sofiane.leagueoflegends.data.repository.ChampionRepositoryImpl
 import com.sofiane.leagueoflegends.domain.model.ChampionModel
 import com.sofiane.leagueoflegends.ui.theme.LeagueoflegendsTheme
 
@@ -33,14 +32,6 @@ fun ChampionHeader(
             Text(
                 text = champion.tags?.firstOrNull() ?: "test"
             )
-        },
-        leadingContent = {
-            AsyncImage(
-                model = RiotImageConstant.SQUARE + "${champion.id}.png",
-                contentDescription = null,
-                modifier = Modifier.size(30.dp)
-            )
-
         },
         trailingContent = {
             Text(

@@ -12,7 +12,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -34,7 +33,7 @@ fun ChampionLore(
             }
     ) {
         Text(
-            text = "Lore",
+            text = "Histoire",
             style = MaterialTheme.typography.titleLarge,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(bottom = 4.dp)
@@ -49,7 +48,7 @@ fun ChampionLore(
         )
 
         Text(
-            text = if (isExpanded) "Moins d'infos" else "Plus d'infos",
+            text = if (isExpanded) "Moins d'infos" else "Plus d'infos" ,
             fontWeight = FontWeight.Bold,
             style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier.padding(top = 4.dp)
