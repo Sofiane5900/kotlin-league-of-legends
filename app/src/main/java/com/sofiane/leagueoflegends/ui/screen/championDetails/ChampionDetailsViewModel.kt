@@ -17,7 +17,7 @@ class ChampionDetailsViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            championRepository.getChampionByName()
+            championRepository.getChampionByName( )
         }
     }
 }
