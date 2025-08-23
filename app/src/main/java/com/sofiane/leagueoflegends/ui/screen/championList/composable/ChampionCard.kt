@@ -28,6 +28,7 @@ import com.sofiane.leagueoflegends.core.util.RiotImageConstant
 import com.sofiane.leagueoflegends.domain.model.ChampionModel
 import com.sofiane.leagueoflegends.domain.model.ImageModel
 import com.sofiane.leagueoflegends.ui.theme.LeagueoflegendsTheme
+import com.sofiane.leagueoflegends.ui.theme.goldBrush
 
 @Composable
 fun ChampionCard(champion: ChampionModel, modifier: Modifier = Modifier) {
@@ -43,7 +44,7 @@ fun ChampionCard(champion: ChampionModel, modifier: Modifier = Modifier) {
                 .size(88.dp)
                 .aspectRatio(1f)
                 .border(
-                    BorderStroke(1.dp, Color(0xFFFFD700)),
+                    BorderStroke(1.dp, goldBrush),
                     RoundedCornerShape(12.dp)
                 )
                 .clip(RoundedCornerShape(12.dp))
@@ -57,6 +58,10 @@ fun ChampionCard(champion: ChampionModel, modifier: Modifier = Modifier) {
                 text = champion.name ?: "test",
                 color = Color.White,
                 style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Bold,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+
             )
         }
     }
