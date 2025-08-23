@@ -2,9 +2,7 @@ package com.sofiane.leagueoflegends
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
-import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -12,7 +10,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.NavHost
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -25,6 +22,15 @@ import com.sofiane.leagueoflegends.ui.screen.championList.ChampionListViewModel
 import com.sofiane.leagueoflegends.ui.theme.LeagueoflegendsTheme
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * Point d'entrée de l'application.
+ *
+ * Elle contient le [NavHost] qui gère la navigation entre les écrans :
+ * - [ChampionListScreen] : liste des champions avec barre de recherche.
+ * - [ChampionDetailsScreen] : détail d’un champion (lore, compétences).
+ *
+ * L'injection de dépendances est gérée par Hilt via [@AndroidEntryPoint].
+ */
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,20 +65,3 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    LeagueoflegendsTheme {
-        Greeting("Android")
-    }
-}
