@@ -1,15 +1,14 @@
 package com.sofiane.leagueoflegends.ui.screen.championList
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Search
@@ -27,7 +26,8 @@ import com.sofiane.leagueoflegends.ui.screen.championList.composable.ChampionCar
 @Composable
 fun ChampionListScreen(
     state: ChampionListState,
-    onValueChange: (String) -> Unit
+    onValueChange: (String) -> Unit,
+    navigate: (String) -> Unit,
 )
 {
     Scaffold { innerPadding ->
@@ -65,6 +65,9 @@ fun ChampionListScreen(
                     ChampionCard(
                         champion = champions,
                         modifier = Modifier.animateItem()
+                            .clickable {
+                                champions.name?.let(navigate)
+                            }
                     )
                 }
 
@@ -77,18 +80,12 @@ fun ChampionListScreen(
 @Preview(showBackground = true)
 @Composable
 fun ChampionListScreenPreview() {
-    // ⚠️ Il faut donner un état "fictif" car en preview tu n’as pas de repo réel
     val fakeState = ChampionListState(
         champions = listOf(
             ChampionModel(id = "Aatrox", name = "Aatrox"),
             ChampionModel(id = "Ahri", name = "Ahri"),
             ChampionModel(id = "Akali", name = "Akali")
         )
-    )
-
-    ChampionListScreen(
-        state = fakeState,
-        onValueChange = {}
     )
 }
 
