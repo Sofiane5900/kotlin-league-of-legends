@@ -55,7 +55,10 @@ fun ChampionListScreen(
 
             ){
                 items(state.filteredChampions.ifEmpty { state.champions }) { champions ->
-                    ChampionCard(champion = champions)
+                    ChampionCard(
+                        champion = champions,
+                        modifier = Modifier.animateItem()
+                    )
                 }
 
             }
