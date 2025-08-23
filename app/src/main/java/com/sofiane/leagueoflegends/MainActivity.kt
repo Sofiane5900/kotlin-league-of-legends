@@ -12,6 +12,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavHost
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.sofiane.leagueoflegends.ui.navigation.ChampionDetails
+import com.sofiane.leagueoflegends.ui.navigation.ChampionList
+import com.sofiane.leagueoflegends.ui.screen.championDetails.ChampionDetailsScreen
+import com.sofiane.leagueoflegends.ui.screen.championDetails.ChampionDetailsViewModel
 import com.sofiane.leagueoflegends.ui.screen.championList.ChampionListScreen
 import com.sofiane.leagueoflegends.ui.screen.championList.ChampionListViewModel
 import com.sofiane.leagueoflegends.ui.theme.LeagueoflegendsTheme
@@ -23,13 +31,30 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             LeagueoflegendsTheme {
-                val viewModel = hiltViewModel<ChampionListViewModel>()
-                val state by viewModel.state.collectAsStateWithLifecycle()
-                ChampionListScreen(
-                    state = state,
-                    onValueChange = viewModel::onSearchTextChange
+                    val navController = rememberNavController()
+                    NavHost(navController = navController, startDestination = ChampionList)
+                    {
+                        composable<ChampionList> {
+                            val viewModel = hiltViewModel<ChampionListViewModel>()
+                            val state by viewModel.state.collectAsStateWithLifecycle()
+                            ChampionListScreen(
+                                state = state,
+                                onValueChange = viewModel::onSearchTextChange,
+                                navigate = {name ->
+                                    navController.navigate(ChampionDetails(name))
+                                }
+                            )
 
-                    )
+                            composable<ChampionDetails> {
+                                val viewModel = hiltViewModel<ChampionDetailsViewModel>()
+                                viewModel.champion.value?.let{
+                                    ChampionDetailsScreen(champion = it)
+                                }
+
+
+                            }
+                        }
+                    }
                 }
             }
         }

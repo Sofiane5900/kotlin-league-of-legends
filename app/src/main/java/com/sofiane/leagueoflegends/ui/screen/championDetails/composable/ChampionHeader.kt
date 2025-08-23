@@ -57,6 +57,6 @@ fun ChampionHeader(
 @Composable
 private fun ChampionHeaderPrev() {
     LeagueoflegendsTheme {
-        ChampionHeader( )
+      //  ChampionHeader( )
     }
 }
