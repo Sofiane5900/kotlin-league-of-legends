@@ -10,7 +10,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
 @Composable
-fun WifiScreen() {
+fun WifiScreen(
+    isConnected: Boolean,
+    ssid: String?,
+    signalDbm: Int?
+) {
     Scaffold { innerPadding ->
         Box(
             modifier = Modifier
@@ -18,9 +22,13 @@ fun WifiScreen() {
                 .fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
-            Text("Wifi")
+            Text(
+                text = buildString {
+                    append(if (isConnected) "Connecté" else "Hors ligne")
+                    append("SSID: ${ssid ?: "—"}")
+                    append("Signal: ${signalDbm?.let { "$it dBm" } ?: "—"}")
+                }
+            )
         }
-
     }
-    
 }
