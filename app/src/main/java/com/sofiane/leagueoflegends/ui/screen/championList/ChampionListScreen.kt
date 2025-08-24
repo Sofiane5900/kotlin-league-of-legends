@@ -83,7 +83,7 @@ fun ChampionListScreen(
                         onDismissRequest = { menuExpanded = false }
                     ) {
                         DropdownMenuItem(
-                            text = { Text("Wi-fi") },
+                            text = { Text("Wi-Fi") },
                             onClick = {
                                 menuExpanded = false
                                 onOpenMenu()
