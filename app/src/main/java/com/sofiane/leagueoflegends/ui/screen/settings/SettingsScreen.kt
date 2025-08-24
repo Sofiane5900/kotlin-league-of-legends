@@ -18,7 +18,7 @@ fun SettigsScreen() {
                 .fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
-            Text("Settings")
+            Text("Wifi")
         }
 
     }
