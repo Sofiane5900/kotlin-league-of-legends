@@ -1,11 +1,14 @@
 package com.sofiane.leagueoflegends.data.system.connectivity
 
 import android.net.ConnectivityManager
+import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkCapabilities.NET_CAPABILITY_INTERNET
 import android.net.NetworkCapabilities.NET_CAPABILITY_VALIDATED
 import android.net.NetworkCapabilities.TRANSPORT_WIFI
+import android.net.wifi.WifiInfo
 import android.net.wifi.WifiManager
+import android.os.Build
 import jakarta.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -25,6 +28,20 @@ class ConnectivityDataSourceImpl @Inject constructor(
         }
     }
 
+
+    /**
+     * Récupère la [WifiInfo] d'une façon propre selon la version d'Android.
+     * - Android 12+ : via NetworkCapabilities.transportInfo
+     * - Avant : via WifiManager.connectionInfo
+     */
+    private fun currentWifiInfo(caps: NetworkCapabilities?): WifiInfo? {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            caps?.transportInfo as? WifiInfo
+        } else {
+            // On ignore le warning "deprecated" de Android studio ici
+            runCatching { wifiManager.connectionInfo }.getOrNull()
+        }
+    }
 
     /**
      * Vérifie si [NetworkCapabilities] correspondentà une connexion Wi-Fi.
