@@ -14,3 +14,7 @@ val Pink40 = Color(0xFF7D5260)
 val goldBrush = Brush.verticalGradient(
     colors = listOf(Color(0xFFFFE8A3), Color(0xFFC8AA6E))
 )
+
+val darkBackgroundBrush = Brush.verticalGradient(
+    colors = listOf(Color(0xFF1A1A1A), Color(0xFF0E0E0E))
+)
