@@ -36,7 +36,7 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
                     NavHost(navController = navController, startDestination = Routes.ChampionList)
                     {
-                        composable< Routes.ChampionList> {
+                        composable<Routes.ChampionList> {
                             val viewModel = hiltViewModel<ChampionListViewModel>()
                             val state by viewModel.state.collectAsStateWithLifecycle()
                             ChampionListScreen(
