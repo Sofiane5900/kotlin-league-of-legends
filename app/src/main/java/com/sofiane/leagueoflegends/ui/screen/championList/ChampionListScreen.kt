@@ -1,5 +1,8 @@
 package com.sofiane.leagueoflegends.ui.screen.championList
 
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -22,6 +25,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -33,6 +37,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.sofiane.leagueoflegends.domain.model.ChampionModel
 import com.sofiane.leagueoflegends.ui.screen.championList.composable.ChampionCard
+import com.sofiane.leagueoflegends.ui.theme.darkBackgroundBrush
+import com.sofiane.leagueoflegends.ui.theme.goldBrush
 
 @Composable
 fun ChampionListScreen(
@@ -60,19 +66,15 @@ fun ChampionListScreen(
                 OutlinedTextField(
                     value = state.searchText,
                     onValueChange = onValueChange,
-                    placeholder = {
-                        Text(text = "Rechercher des champions")
-                    },
-                    leadingIcon = {
-                        Icon(
-                            imageVector = Icons.Rounded.Search,
-                            contentDescription = null
-                        )
-                    },
-                    shape = RoundedCornerShape(12.dp),
+                    placeholder = { Text("Rechercher des champions") },
+                    leadingIcon = { Icon(Icons.Rounded.Search, contentDescription = null) },
                     modifier = Modifier
                         .weight(1f)
                         .padding(vertical = 20.dp)
+                        .background(darkBackgroundBrush, shape = RoundedCornerShape(2.dp))
+                        .border(BorderStroke(1.dp, goldBrush), shape = RoundedCornerShape(2.dp)),
+                    shape = RoundedCornerShape(2.dp),
+                    singleLine = true
                 )
                 Box{
                     IconButton(onClick = { menuExpanded = true} ) {
