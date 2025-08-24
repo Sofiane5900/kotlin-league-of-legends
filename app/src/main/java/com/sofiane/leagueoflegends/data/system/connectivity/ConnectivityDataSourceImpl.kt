@@ -9,7 +9,7 @@ import android.net.NetworkCapabilities.TRANSPORT_WIFI
 import android.net.wifi.WifiInfo
 import android.net.wifi.WifiManager
 import android.os.Build
-import jakarta.inject.Inject
+import javax.inject.Inject
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
