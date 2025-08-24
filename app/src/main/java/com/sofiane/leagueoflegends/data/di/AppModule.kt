@@ -1,5 +1,7 @@
 package com.sofiane.leagueoflegends.data.di
 
+import com.sofiane.leagueoflegends.data.remote.ChampionRemoteDataSource
+import com.sofiane.leagueoflegends.data.remote.ChampionRemoteDataSourceImpl
 import com.sofiane.leagueoflegends.data.remote.repository.ChampionRepositoryImpl
 import com.sofiane.leagueoflegends.domain.repository.ChampionRepository
 import dagger.Module
@@ -60,18 +62,30 @@ object AppModule {
     }
 
     /**
+     * Fournit une implémentation de [ChampionRemoteDataSource].
+     * @param httpClient Le client HTTP fourni par [provideHttpClient].
+     * @return Une instance singleton de [ChampionRemoteDataSource].
+     */
+    @Provides
+    @Singleton
+    fun provideChampionRemoteDataSource(httpClient: HttpClient): ChampionRemoteDataSource
+    {
+        return ChampionRemoteDataSourceImpl(httpClient)
+    }
+
+    /**
      * Fournit une implémentation de [ChampionRepository].
      *
      * Cette implémentation ([ChampionRepositoryImpl]) utilise
-     * le [HttpClient] configuré ci-dessus pour interagir avec l’API Riot Data Dragon.
+     * le [remote] configuré ci-dessus pour interagir avec l’API Riot Data Dragon.
      *
-     * @param httpClient Le client HTTP fourni par [provideHttpClient].
+     * @param remote Le client HTTP fourni par [provideChampionRemoteDataSource].
      * @return Une instance singleton de [ChampionRepository].
      */
     @Provides
     @Singleton
-    fun provideChampionRepository(httpClient: HttpClient): ChampionRepository
+    fun provideChampionRepository(remote: ChampionRemoteDataSource): ChampionRepository
     {
-       return ChampionRepositoryImpl(httpClient = httpClient)
+       return ChampionRepositoryImpl(remote)
     }
 }
