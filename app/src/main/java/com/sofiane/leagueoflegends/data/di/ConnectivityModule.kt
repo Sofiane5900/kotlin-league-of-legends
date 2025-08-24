@@ -5,6 +5,8 @@ import android.net.ConnectivityManager
 import android.net.wifi.WifiManager
 import com.sofiane.leagueoflegends.data.system.connectivity.ConnectivityDataSource
 import com.sofiane.leagueoflegends.data.system.connectivity.ConnectivityDataSourceImpl
+import com.sofiane.leagueoflegends.data.system.connectivity.repository.ConnectivityRepository
+import com.sofiane.leagueoflegends.data.system.connectivity.repository.ConnectivityRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -62,5 +64,20 @@ object ConnectivityModule {
         wifi: WifiManager
     ): ConnectivityDataSource {
         return ConnectivityDataSourceImpl(cm, wifi)
+    }
+
+    /**
+     * Fournit une implémentation de [ConnectivityRepository] qui manipule le
+     * le [ConnectivityDataSource].
+     *
+     * @param dataSource l’implémentation de [ConnectivityDataSource].
+     * @return Une instance singleton de [ConnectivityRepository].
+     */
+    @Provides
+    @Singleton
+    fun provideConnectivityRepository(
+        dataSource: ConnectivityDataSource
+    ): ConnectivityRepository {
+        return ConnectivityRepositoryImpl(dataSource)
     }
 }
