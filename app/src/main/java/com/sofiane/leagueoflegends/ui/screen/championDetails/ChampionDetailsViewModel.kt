@@ -9,7 +9,7 @@ import com.skydoves.sandwich.onFailure
 import com.skydoves.sandwich.onSuccess
 import com.sofiane.leagueoflegends.domain.model.ChampionModel
 import com.sofiane.leagueoflegends.domain.repository.ChampionRepository
-import com.sofiane.leagueoflegends.ui.navigation.ChampionDetails
+import com.sofiane.leagueoflegends.ui.navigation.Routes
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -23,7 +23,7 @@ class ChampionDetailsViewModel @Inject constructor(
 
     init {
 
-        val args = savedStateHandle.toRoute<ChampionDetails>()
+        val args = savedStateHandle.toRoute<Routes.ChampionDetails>()
         viewModelScope.launch {
             championRepository.getChampionByName(args.name)
                 .onSuccess { champion.value = data.champion.values.firstOrNull() }

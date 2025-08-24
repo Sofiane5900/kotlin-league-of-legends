@@ -20,5 +20,6 @@ class ChampionRepositoryImpl(
 
 
     override suspend fun getChampionByName(name: String): ApiResponse<ChampionResponseModel> {
-       return httpClient.getApiResponse<ChampionResponseModel>("$BASE_URL/champion/$name.json")    }
+       return httpClient.getApiResponse<ChampionResponseModel>("$BASE_URL/champion/$name.json")
+    }
 }
