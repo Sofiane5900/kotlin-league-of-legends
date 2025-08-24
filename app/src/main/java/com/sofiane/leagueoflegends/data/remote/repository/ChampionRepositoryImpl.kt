@@ -7,7 +7,7 @@ import com.sofiane.leagueoflegends.domain.model.ChampionResponseModel
 import com.sofiane.leagueoflegends.domain.repository.ChampionRepository
 import io.ktor.client.HttpClient
 class ChampionRepositoryImpl(
-    private val remote: ChampionRemoteDataSource,
+    private val dataSource: ChampionRemoteDataSource,
 ) : ChampionRepository {
     companion object {
         // TODO : ajouter l'url dans un fichier .env
@@ -16,11 +16,11 @@ class ChampionRepositoryImpl(
 
     }
     override suspend fun getAllChampions(): ApiResponse<ChampionResponseModel> {
-       return remote.fetchAllChampions()
+       return dataSource.fetchAllChampions()
     }
 
 
     override suspend fun getChampionByName(name: String): ApiResponse<ChampionResponseModel> {
-        return remote.fetchChampionByName(name)
+        return dataSource.fetchChampionByName(name)
     }
 }
