@@ -1,4 +1,4 @@
-package com.sofiane.leagueoflegends.data.repository
+package com.sofiane.leagueoflegends.data.remote.repository
 
 import com.skydoves.sandwich.ApiResponse
 import com.skydoves.sandwich.ktor.getApiResponse

@@ -1,4 +1,4 @@
-package com.sofiane.leagueoflegends.data.ddragon
+package com.sofiane.leagueoflegends.data.remote.ddragon
 
 /**
  * Contient les URLs de base pour les images fournies par Riot Data Dragon.

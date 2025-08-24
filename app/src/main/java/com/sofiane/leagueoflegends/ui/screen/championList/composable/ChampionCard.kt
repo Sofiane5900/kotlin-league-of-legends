@@ -2,11 +2,8 @@ package com.sofiane.leagueoflegends.ui.screen.championList.composable
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -22,9 +19,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
-import com.sofiane.leagueoflegends.data.ddragon.RiotImageConstant
+import com.sofiane.leagueoflegends.data.remote.ddragon.RiotImageConstant
 import com.sofiane.leagueoflegends.domain.model.ChampionModel
 import com.sofiane.leagueoflegends.domain.model.ImageModel
 import com.sofiane.leagueoflegends.ui.theme.LeagueoflegendsTheme

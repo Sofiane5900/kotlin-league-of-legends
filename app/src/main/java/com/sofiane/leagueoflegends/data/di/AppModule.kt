@@ -1,6 +1,6 @@
 package com.sofiane.leagueoflegends.data.di
 
-import com.sofiane.leagueoflegends.data.repository.ChampionRepositoryImpl
+import com.sofiane.leagueoflegends.data.remote.repository.ChampionRepositoryImpl
 import com.sofiane.leagueoflegends.domain.repository.ChampionRepository
 import dagger.Module
 import dagger.Provides

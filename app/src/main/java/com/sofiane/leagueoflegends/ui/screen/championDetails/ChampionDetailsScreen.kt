@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import com.sofiane.leagueoflegends.data.ddragon.RiotImageConstant
+import com.sofiane.leagueoflegends.data.remote.ddragon.RiotImageConstant
 import com.sofiane.leagueoflegends.domain.model.ChampionModel
 import com.sofiane.leagueoflegends.ui.screen.championDetails.composable.ChampionHeader
 import com.sofiane.leagueoflegends.ui.screen.championDetails.composable.ChampionLore
