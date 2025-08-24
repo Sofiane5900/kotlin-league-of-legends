@@ -41,9 +41,9 @@ fun ChampionCard(champion: ChampionModel, modifier: Modifier = Modifier) {
                 .aspectRatio(1f)
                 .border(
                     BorderStroke(1.dp, goldBrush),
-                    RoundedCornerShape(12.dp)
+                    RoundedCornerShape(50.dp)
                 )
-                .clip(RoundedCornerShape(12.dp))
+                .clip(RoundedCornerShape(50.dp))
         )
 
         Column(
