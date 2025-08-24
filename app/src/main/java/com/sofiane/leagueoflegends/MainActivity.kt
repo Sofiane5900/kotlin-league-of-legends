@@ -14,6 +14,7 @@ import com.sofiane.leagueoflegends.ui.screen.championDetails.ChampionDetailsScre
 import com.sofiane.leagueoflegends.ui.screen.championDetails.ChampionDetailsViewModel
 import com.sofiane.leagueoflegends.ui.screen.championList.ChampionListScreen
 import com.sofiane.leagueoflegends.ui.screen.championList.ChampionListViewModel
+import com.sofiane.leagueoflegends.ui.screen.settings.SettigsScreen
 import com.sofiane.leagueoflegends.ui.theme.LeagueoflegendsTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -41,8 +42,11 @@ class MainActivity : ComponentActivity() {
                             ChampionListScreen(
                                 state = state,
                                 onValueChange = viewModel::onSearchTextChange,
-                                navigate = {name ->
+                                navigate = { name ->
                                     navController.navigate(Routes.ChampionDetails(name))
+                                },
+                                onOpenMenu = {
+                                    navController.navigate(Routes.Settings)
                                 }
                             )
 
@@ -52,9 +56,12 @@ class MainActivity : ComponentActivity() {
                             viewModel.champion.value?.let{
                                 ChampionDetailsScreen(champion = it)
                             }
-
-
                         }
+
+                        composable<Routes.Settings> {
+                            SettigsScreen()
+                        }
+
                     }
                 }
             }
