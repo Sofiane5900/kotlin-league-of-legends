@@ -57,40 +57,39 @@ fun ChampionListScreen(
                     .fillMaxWidth()
                     .padding(top = 12.dp, bottom = 8.dp)
             ) {
-
-            }
-            OutlinedTextField(
-                value = state.searchText,
-                onValueChange = onValueChange,
-                placeholder = {
-                    Text(text = "Rechercher des champions")
-                },
-                leadingIcon = {
-                    Icon(
-                        imageVector = Icons.Rounded.Search,
-                        contentDescription = null
-                    )
-                },
-                shape = RoundedCornerShape(12.dp),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 20.dp)
-            )
-            Box{
-                IconButton(onClick = { menuExpanded = true} ) {
-                    Icon(Icons.Rounded.MoreVert, contentDescription = "Ouvrir le menu")
-                }
-                DropdownMenu(
-                    expanded = menuExpanded,
-                    onDismissRequest = { menuExpanded = false }
-                ) {
-                    DropdownMenuItem(
-                        text = { Text("Paramètres") },
-                        onClick = {
-                            menuExpanded = false
-                            onOpenMenu()
-                        }
-                    )
+                OutlinedTextField(
+                    value = state.searchText,
+                    onValueChange = onValueChange,
+                    placeholder = {
+                        Text(text = "Rechercher des champions")
+                    },
+                    leadingIcon = {
+                        Icon(
+                            imageVector = Icons.Rounded.Search,
+                            contentDescription = null
+                        )
+                    },
+                    shape = RoundedCornerShape(12.dp),
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(vertical = 20.dp)
+                )
+                Box{
+                    IconButton(onClick = { menuExpanded = true} ) {
+                        Icon(Icons.Rounded.MoreVert, contentDescription = "Ouvrir le menu")
+                    }
+                    DropdownMenu(
+                        expanded = menuExpanded,
+                        onDismissRequest = { menuExpanded = false }
+                    ) {
+                        DropdownMenuItem(
+                            text = { Text("Paramètres") },
+                            onClick = {
+                                menuExpanded = false
+                                onOpenMenu()
+                            }
+                        )
+                    }
                 }
             }
             LazyVerticalGrid(
