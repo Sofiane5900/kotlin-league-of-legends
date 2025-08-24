@@ -14,9 +14,10 @@ import com.sofiane.leagueoflegends.ui.screen.championDetails.ChampionDetailsScre
 import com.sofiane.leagueoflegends.ui.screen.championDetails.ChampionDetailsViewModel
 import com.sofiane.leagueoflegends.ui.screen.championList.ChampionListScreen
 import com.sofiane.leagueoflegends.ui.screen.championList.ChampionListViewModel
-import com.sofiane.leagueoflegends.ui.screen.wifi.SettigsScreen
 import com.sofiane.leagueoflegends.ui.screen.wifi.WifiScreen
+import com.sofiane.leagueoflegends.ui.screen.wifi.WifiViewModel
 import com.sofiane.leagueoflegends.ui.theme.LeagueoflegendsTheme
+import com.sofiane.leagueoflegends.ui.util.permissions.WithLocationPermission
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -60,7 +61,27 @@ class MainActivity : ComponentActivity() {
                         }
 
                         composable<Routes.Wifi> {
-                            WifiScreen()
+                            // on demande la permission pour le ssid
+                            WithLocationPermission(
+                                onGranted = {
+                                    val vm = hiltViewModel<WifiViewModel>()
+                                    val s by vm.state.collectAsStateWithLifecycle()
+
+                                    WifiScreen(
+                                        isConnected = s.isConnected,
+                                        ssid = s.ssid,
+                                        signalDbm = s.signalDbm
+                                    )
+                                },
+                                onDenied = {
+                                    // fallback si jamais permission denied
+                                    WifiScreen(
+                                        isConnected = false,
+                                        ssid = null,
+                                        signalDbm = null
+                                    )
+                                }
+                            )
                         }
 
                     }
