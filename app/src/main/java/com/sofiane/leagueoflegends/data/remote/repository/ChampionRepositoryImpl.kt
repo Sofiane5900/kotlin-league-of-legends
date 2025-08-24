@@ -2,11 +2,12 @@ package com.sofiane.leagueoflegends.data.remote.repository
 
 import com.skydoves.sandwich.ApiResponse
 import com.skydoves.sandwich.ktor.getApiResponse
+import com.sofiane.leagueoflegends.data.remote.ChampionRemoteDataSource
 import com.sofiane.leagueoflegends.domain.model.ChampionResponseModel
 import com.sofiane.leagueoflegends.domain.repository.ChampionRepository
 import io.ktor.client.HttpClient
 class ChampionRepositoryImpl(
-    private val httpClient: HttpClient
+    private val remote: ChampionRemoteDataSource,
 ) : ChampionRepository {
     companion object {
         // TODO : ajouter l'url dans un fichier .env
@@ -15,11 +16,11 @@ class ChampionRepositoryImpl(
 
     }
     override suspend fun getAllChampions(): ApiResponse<ChampionResponseModel> {
-       return httpClient.getApiResponse<ChampionResponseModel>("$BASE_URL/champion.json")
+       return remote.fetchAllChampions()
     }
 
 
     override suspend fun getChampionByName(name: String): ApiResponse<ChampionResponseModel> {
-       return httpClient.getApiResponse<ChampionResponseModel>("$BASE_URL/champion/$name.json")
+        return remote.fetchChampionByName(name)
     }
 }
