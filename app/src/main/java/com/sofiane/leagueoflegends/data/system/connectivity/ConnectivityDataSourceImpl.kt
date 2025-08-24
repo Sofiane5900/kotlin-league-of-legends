@@ -30,6 +30,38 @@ class ConnectivityDataSourceImpl @Inject constructor(
 
 
     /**
+     * Construit un [NetworkState] à partir du réseau actif (ou d’un [network] donné).
+     *
+     * - Vérifie si le réseau est bien un Wi-Fi.
+     * - Rrécupère le SSID et l’intensité du signal (RSSI).
+     *
+     * @param network Réseau à observer, ou celui actif par défaut.
+     * @return Un [NetworkState] représentant l’état de la connexion Wi-Fi.
+     */
+    private fun buildState(network: Network? = connectivityManager.activeNetwork): NetworkState {
+        // caps = abréviation de NetworkCapabilities
+        val caps = runCatching { connectivityManager.getNetworkCapabilities(network) }.getOrNull()
+        val connectedWifi = caps.isConnectedWifi()
+
+        // Valeurs par défaut = non connecté au wifi
+        var ssid: String? = null
+        var rssi: Int? = null
+
+        if (connectedWifi) {
+            val info = currentWifiInfo(caps)
+            // unknow ssid si jamais la location n'est pas activté
+            ssid = info?.ssid?.trim('"')
+            rssi = info?.rssi
+        }
+
+        return NetworkState(
+            isConnected = connectedWifi,
+            ssid = ssid,
+            signalDbm = rssi
+        )
+    }
+
+    /**
      * Récupère la [WifiInfo] d'une façon propre selon la version d'Android.
      * - Android 12+ : via NetworkCapabilities.transportInfo
      * - Avant : via WifiManager.connectionInfo
