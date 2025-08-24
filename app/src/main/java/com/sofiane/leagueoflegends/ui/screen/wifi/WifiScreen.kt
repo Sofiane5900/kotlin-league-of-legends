@@ -10,7 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
 @Composable
-fun SettigsScreen() {
+fun WifiScreen() {
     Scaffold { innerPadding ->
         Box(
             modifier = Modifier

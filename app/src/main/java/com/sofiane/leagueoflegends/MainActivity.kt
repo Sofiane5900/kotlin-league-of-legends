@@ -15,6 +15,7 @@ import com.sofiane.leagueoflegends.ui.screen.championDetails.ChampionDetailsView
 import com.sofiane.leagueoflegends.ui.screen.championList.ChampionListScreen
 import com.sofiane.leagueoflegends.ui.screen.championList.ChampionListViewModel
 import com.sofiane.leagueoflegends.ui.screen.wifi.SettigsScreen
+import com.sofiane.leagueoflegends.ui.screen.wifi.WifiScreen
 import com.sofiane.leagueoflegends.ui.theme.LeagueoflegendsTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -59,7 +60,7 @@ class MainActivity : ComponentActivity() {
                         }
 
                         composable<Routes.Wifi> {
-                            SettigsScreen()
+                            WifiScreen()
                         }
 
                     }
