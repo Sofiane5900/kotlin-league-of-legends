@@ -14,7 +14,7 @@ import com.sofiane.leagueoflegends.ui.screen.championDetails.ChampionDetailsScre
 import com.sofiane.leagueoflegends.ui.screen.championDetails.ChampionDetailsViewModel
 import com.sofiane.leagueoflegends.ui.screen.championList.ChampionListScreen
 import com.sofiane.leagueoflegends.ui.screen.championList.ChampionListViewModel
-import com.sofiane.leagueoflegends.ui.screen.settings.SettigsScreen
+import com.sofiane.leagueoflegends.ui.screen.wifi.SettigsScreen
 import com.sofiane.leagueoflegends.ui.theme.LeagueoflegendsTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -46,7 +46,7 @@ class MainActivity : ComponentActivity() {
                                     navController.navigate(Routes.ChampionDetails(name))
                                 },
                                 onOpenMenu = {
-                                    navController.navigate(Routes.Settings)
+                                    navController.navigate(Routes.Wifi)
                                 }
                             )
 
@@ -58,7 +58,7 @@ class MainActivity : ComponentActivity() {
                             }
                         }
 
-                        composable<Routes.Settings> {
+                        composable<Routes.Wifi> {
                             SettigsScreen()
                         }
 

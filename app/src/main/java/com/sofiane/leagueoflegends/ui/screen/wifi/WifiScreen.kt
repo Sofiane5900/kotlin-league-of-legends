@@ -1,4 +1,4 @@
-package com.sofiane.leagueoflegends.ui.screen.settings
+package com.sofiane.leagueoflegends.ui.screen.wifi
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

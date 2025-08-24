@@ -13,5 +13,5 @@ class Routes {
     data class ChampionDetails(val name: String)
 
     @Serializable
-    data object Settings
+    data object Wifi
 }
