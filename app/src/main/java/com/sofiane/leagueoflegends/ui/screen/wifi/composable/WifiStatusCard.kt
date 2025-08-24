@@ -1,6 +1,7 @@
 package com.sofiane.leagueoflegends.ui.screen.wifi.composable
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -12,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.sofiane.leagueoflegends.ui.theme.darkBackgroundBrush
 import com.sofiane.leagueoflegends.ui.theme.goldBrush
 
 @Composable
@@ -33,10 +35,13 @@ fun WifiStatusCard(
     Card(
         shape = RoundedCornerShape(12.dp),
         border = BorderStroke(1.dp, goldBrush),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+        colors = CardDefaults.cardColors(
+            containerColor = Color.Transparent
+        ),
         modifier = Modifier
             .padding(16.dp)
             .fillMaxWidth()
+            .background(darkBackgroundBrush, RoundedCornerShape(8.dp))
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
