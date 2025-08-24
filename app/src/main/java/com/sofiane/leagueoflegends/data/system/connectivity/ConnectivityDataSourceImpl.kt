@@ -10,6 +10,7 @@ import android.net.wifi.WifiInfo
 import android.net.wifi.WifiManager
 import android.os.Build
 import jakarta.inject.Inject
+import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 
@@ -22,9 +23,35 @@ class ConnectivityDataSourceImpl @Inject constructor(
     private val wifiManager: WifiManager
 ) : ConnectivityDataSource {
 
+    /**
+     * Observe en temps réel l’état du réseau avec [Flow].
+     *
+     * - Émet une fois l’état courant via [buildState].
+     * - Écoute ensuite les callbacks du [ConnectivityManager] :
+     *   - [onAvailable] : lorsqu’un réseau devient disponible.
+     *   - [onLost] : lorsqu’un réseau est perdu.
+     *   - [onCapabilitiesChanged] : lorsqu’un réseau change de capacités.
+     * - Se désinscrit automatiquement à la fermeture du flow.
+     *
+     * @return Un [Flow] émettant un [NetworkState] à chaque changement de "connectivité".
+     */
     override fun observeNetworkState(): Flow<NetworkState> {
         return callbackFlow {
-            trySend()
+            trySend(buildState())
+            // callback appelé à chaque changement de réseau
+            val callback = object : ConnectivityManager.NetworkCallback() {
+                override fun onAvailable(network: Network) {
+                    trySend(buildState(network)).isSuccess
+                }
+                override fun onLost(network: Network) {
+                    trySend(buildState()).isSuccess
+                }
+                override fun onCapabilitiesChanged(network: Network, caps: NetworkCapabilities) {
+                    trySend(buildState(network)).isSuccess
+                }
+            }
+            connectivityManager.registerDefaultNetworkCallback(callback)
+            awaitClose { connectivityManager.unregisterNetworkCallback(callback) }
         }
     }
 
