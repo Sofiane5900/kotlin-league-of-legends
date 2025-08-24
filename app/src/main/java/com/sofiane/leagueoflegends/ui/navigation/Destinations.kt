@@ -6,10 +6,12 @@ import kotlinx.serialization.Serializable
 class Routes {
 
 
-@Serializable
-data object ChampionList
+    @Serializable
+    data object ChampionList
 
-@Serializable
-data class ChampionDetails(val name: String)
+    @Serializable
+    data class ChampionDetails(val name: String)
 
+    @Serializable
+    data object Settings
 }
