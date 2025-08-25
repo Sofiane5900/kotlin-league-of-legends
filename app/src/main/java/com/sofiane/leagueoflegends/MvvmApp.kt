@@ -13,5 +13,4 @@ import dagger.hilt.android.HiltAndroidApp
  * vivante tant que l'application est en mémoire.
  */
 @HiltAndroidApp
-class MvvmApp : Application() {
-}
+class MvvmApp : Application()

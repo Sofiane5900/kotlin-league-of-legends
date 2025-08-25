@@ -17,17 +17,18 @@ import javax.inject.Inject
 @HiltViewModel
 class ChampionDetailsViewModel @Inject constructor(
     private val championRepository: ChampionRepository,
-    private val savedStateHandle: SavedStateHandle
+    private val savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
+    // TODO : Si tu as fait le choix de passer par des states dans tes autres vues, ça ne devrait pas être le cas ici ? Ou alors ne pas utiliser de State (sous entendu classe à part du VM) nulle part.
     var champion = mutableStateOf<ChampionModel?>(null)
 
     init {
-
+        // TODO(Benji):C'est pas mal et c'est correct, mais je ne mettrait pas la partie navigation dans le VM -> pour moi c'est la responsabilité de la vue.
         val args = savedStateHandle.toRoute<Routes.ChampionDetails>()
         viewModelScope.launch {
             championRepository.getChampionByName(args.name)
                 .onSuccess { champion.value = data.champion.values.firstOrNull() }
-                // TODO: renvoyer un error message en cas de failure
+                // TODO(Benji):renvoyer un error message en cas de failure
                 .onFailure { }
         }
     }

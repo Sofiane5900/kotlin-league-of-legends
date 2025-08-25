@@ -18,12 +18,13 @@ import com.sofiane.leagueoflegends.ui.theme.goldBrush
 
 @Composable
 fun WifiStatusCard(
+    // TODO : Pourquoi ne pas passer ton [NetworkState] ?
     isConnected: Boolean,
     ssid: String?,
     signalDbm: Int?
 ) {
-    // TODO : déplacé toute la logique d'état dans une autre classe
-    val statusText  = if (isConnected) "Connecté" else "Hors ligne"
+    // TODO : déplacer toute la logique d'état dans une autre classe -> TODO(Benji): C'est à dire ?
+    val statusText  = if (isConnected) "Connecté" else "Hors ligne" // TODO(Benji): En Android on écrit jamais de chaine directement
     val statusColor = if (isConnected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.error
     // couleur du signal via un switch
     val signalColor = when {
@@ -62,7 +63,7 @@ fun WifiStatusCard(
 
             // ssid
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                Text("Réseau", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text("Réseau", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant) // TODO(Benji): Attention à la longueur de la ligne (erreur de qualité)
                 Text(ssid ?: "—", style = MaterialTheme.typography.bodyMedium)
             }
 
@@ -76,3 +77,5 @@ fun WifiStatusCard(
         }
     }
 }
+
+// TODO : Un composable = un preview

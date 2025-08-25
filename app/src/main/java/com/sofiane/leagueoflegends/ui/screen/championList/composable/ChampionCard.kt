@@ -26,13 +26,16 @@ import com.sofiane.leagueoflegends.domain.model.ImageModel
 import com.sofiane.leagueoflegends.ui.theme.LeagueoflegendsTheme
 import com.sofiane.leagueoflegends.ui.theme.goldBrush
 
+// TODO(Benji):kdoc sur les compasables qui ne sont pas un screen. Mais très bien d'avoir mis un preview et passer le modifier !
 @Composable
 fun ChampionCard(champion: ChampionModel, modifier: Modifier = Modifier) {
+    // TODO(Benji):nit: A faire partout -> mettre "= Column" plutot que "} \n Column("
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         AsyncImage(
+            // TODO(Benji):Pas d'appel au d'autres couche que présentation ici, on casse les principes SOLID
             model = RiotImageConstant.SQUARE + "${champion.id}.png",
             contentDescription = champion.name,
             contentScale = ContentScale.Crop,
@@ -46,6 +49,7 @@ fun ChampionCard(champion: ChampionModel, modifier: Modifier = Modifier) {
                 .clip(RoundedCornerShape(50.dp))
         )
 
+        // TODO(Benji):Pourquoi mettre une colonne avec un seul element ? On est déjà dans une colonne
         Column(
             modifier = Modifier
                 .padding(vertical = 10.dp)
@@ -65,7 +69,7 @@ fun ChampionCard(champion: ChampionModel, modifier: Modifier = Modifier) {
 
 @Preview(showBackground = true)
 @Composable
-private fun ChampionCardPreview() {
+private fun ChampionCardPreview() { // TODO(Benji):Pareil: mettre un "=" pour ganger une indentation et en lisibilité. A faire partout.
     LeagueoflegendsTheme {
         ChampionCard(
             champion = ChampionModel(

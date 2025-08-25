@@ -25,10 +25,13 @@ import javax.inject.Inject
 class WifiViewModel @Inject constructor(
     repository: ConnectivityRepository
 ) : ViewModel() {
+    // TODO : Manque de cohérence ici. Soit c'est le state de ta vue et comme pour le
      val state: StateFlow<NetworkState> =
-         repository.networkState()
+        repository
+            .networkState()
             .stateIn(
                 viewModelScope,
                 SharingStarted.WhileSubscribed(5_000),
-                NetworkState(isConnected = false))
+                NetworkState(isConnected = false),
+            )
 }
