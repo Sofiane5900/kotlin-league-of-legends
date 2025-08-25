@@ -35,9 +35,10 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             LeagueoflegendsTheme {
+                    // TODO(Benji): nit: Soucis d'indentiation: CMD+A, CTRL+OPTION+I
                     val navController = rememberNavController()
                     NavHost(navController = navController, startDestination = Routes.ChampionList)
-                    {
+                    { // TODO(Benji): n est pas en C# :)
                         composable<Routes.ChampionList> {
                             val viewModel = hiltViewModel<ChampionListViewModel>()
                             val state by viewModel.state.collectAsStateWithLifecycle()
@@ -53,6 +54,7 @@ class MainActivity : ComponentActivity() {
                             )
 
                         }
+
                         composable<Routes.ChampionDetails> {
                             val viewModel = hiltViewModel<ChampionDetailsViewModel>()
                             viewModel.champion.value?.let{

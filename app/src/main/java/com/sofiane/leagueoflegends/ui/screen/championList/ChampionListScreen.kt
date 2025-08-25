@@ -40,79 +40,84 @@ import com.sofiane.leagueoflegends.ui.screen.championList.composable.ChampionCar
 import com.sofiane.leagueoflegends.ui.theme.darkBackgroundBrush
 import com.sofiane.leagueoflegends.ui.theme.goldBrush
 
+// TODO(Benji): nit: C'est une liste de 1 seul champion ? "championList" -> "championsList"
 @Composable
 fun ChampionListScreen(
     state: ChampionListState,
     onValueChange: (String) -> Unit,
     navigate: (String) -> Unit,
-    onOpenMenu: () -> Unit
-)
-{
+    onOpenMenu: () -> Unit,
+) = Scaffold { innerPadding ->
     var menuExpanded by remember { mutableStateOf(false) }
 
-    Scaffold { innerPadding ->
-        Column(
+    Column(
+        Modifier
+            .padding(innerPadding)
+            .fillMaxSize()
+            .padding(horizontal = 20.dp)
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
-                .padding(innerPadding)
-                .fillMaxSize()
-                .padding(horizontal = 20.dp)
-
+                .fillMaxWidth()
+                .padding(top = 12.dp, bottom = 8.dp)
         ) {
-            Row(verticalAlignment = Alignment.CenterVertically,
+            OutlinedTextField(
+                value = state.searchText,
+                onValueChange = onValueChange,
+                placeholder = { Text("Rechercher des champions") },
+                leadingIcon = { Icon(Icons.Rounded.Search, contentDescription = null) },
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 12.dp, bottom = 8.dp)
-            ) {
-                OutlinedTextField(
-                    value = state.searchText,
-                    onValueChange = onValueChange,
-                    placeholder = { Text("Rechercher des champions") },
-                    leadingIcon = { Icon(Icons.Rounded.Search, contentDescription = null) },
-                    modifier = Modifier
-                        .weight(1f)
-                        .padding(vertical = 20.dp)
-                        .background(darkBackgroundBrush, shape = RoundedCornerShape(2.dp))
-                        .border(BorderStroke(1.dp, goldBrush), shape = RoundedCornerShape(2.dp)),
-                    shape = RoundedCornerShape(2.dp),
-                    singleLine = true
-                )
-                Box{
-                    IconButton(onClick = { menuExpanded = true} ) {
-                        Icon(Icons.Rounded.MoreVert, contentDescription = "Ouvrir le menu")
-                    }
-                    DropdownMenu(
-                        expanded = menuExpanded,
-                        onDismissRequest = { menuExpanded = false }
-                    ) {
-                        DropdownMenuItem(
-                            text = { Text("Wi-Fi") },
-                            onClick = {
-                                menuExpanded = false
-                                onOpenMenu()
-                            }
-                        )
-                    }
+                    .weight(1f)
+                    .padding(vertical = 20.dp)
+                    .background(darkBackgroundBrush, shape = RoundedCornerShape(2.dp))
+                    .border(BorderStroke(1.dp, goldBrush), shape = RoundedCornerShape(2.dp)),
+                shape = RoundedCornerShape(2.dp),
+                singleLine = true
+            )
+
+            // TODO : Utiliser le scaffolf pour ça !
+            Box {
+                IconButton(onClick = { menuExpanded = true} ) {
+                    Icon(Icons.Rounded.MoreVert, contentDescription = "Ouvrir le menu")
                 }
-            }
-            LazyVerticalGrid(
-                columns = GridCells.Adaptive(100.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp),
-                modifier = Modifier.padding(vertical = 10.dp),
-                horizontalArrangement = Arrangement.spacedBy(16.dp)
-            ){
-                items(state.filteredChampions.ifEmpty { state.champions }) { champions ->
-                    ChampionCard(
-                        champion = champions,
-                        modifier = Modifier.animateItem()
-                            .clickable {
-                                champions.name?.let(navigate)
-                            }
+                DropdownMenu(
+                    expanded = menuExpanded,
+                    onDismissRequest = { menuExpanded = false }
+                ) {
+                    DropdownMenuItem(
+                        text = { Text("Wi-Fi") },
+                        onClick = {
+                            menuExpanded = false
+                            onOpenMenu()
+                        }
                     )
                 }
-
             }
         }
+
+        LazyVerticalGrid(
+            columns = GridCells.Adaptive(100.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+            modifier = Modifier.padding(vertical = 10.dp),
+            horizontalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            // TODO : Ce n'est pas faux de faire comme ça, mais je trouve que c'est plutot coté VM/State de gerer ça.
+            // Comme tu as décidé que c'était au VM de gerer le filtre, la vue devrait juste afficher une liste calculé par le VM
+            items(state.filteredChampions.ifEmpty { state.champions }) { champions ->
+                ChampionCard(
+                    champion = champions,
+                    modifier = Modifier
+                        .animateItem()
+                        .clickable {
+                            champions.name?.let(navigate)
+                        }
+                )
+            }
+
+        }
     }
+}
 
 }
 
@@ -127,5 +132,3 @@ fun ChampionListScreenPreview() {
         )
     )
 }
-
-
